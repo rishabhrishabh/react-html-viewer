@@ -1,5 +1,7 @@
   body {
+    /*
     background: url('data:image/jpeg;base64,/==') no-repeat center center fixed;
+    */
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -78,7 +80,7 @@
     overflow: scroll;
   }
 
-  #input {
+  textarea {
     margin: auto;
     height: 100%;
     width: 100%;
@@ -89,7 +91,7 @@
     font-size: large;
   }
 
-  #output {
+  iframe {
     margin: auto;
     height: 100%;
     width: 100%;

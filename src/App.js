@@ -1,17 +1,26 @@
 import React, { Component } from 'react';
 
 class App extends Component {
+    constructor(props) {
+      super(props);
+      this.state = {
+        htmlText: '<html>\n<head>\n\n</head>\n<body>\n\n</body>\n</html>'
+      }
+    }
 
     componentDidMount() {
-      var input = document.getElementById("input");
-      input.value = "<html>\n<head>\n\n</head>\n<body>\n\n</body>\n</html>";
+      var input = this.refs.input;
+      input.value = this.state.htmlText;
       input.focus();
     }
 
-    handleKeyUp() {
-      var input = document.getElementById("input");
-      var result = document.getElementById("output");
-      result.contentDocument.documentElement.innerHTML = input.value;
+    handleKeyUp(e) {
+      var result = this.refs.output;
+      result.contentDocument.documentElement.innerHTML = this.state.htmlText
+    }
+
+    handleChange() {
+      this.setState({htmlText: this.refs.input.value});
     }
 
     render() {
@@ -20,11 +29,11 @@ class App extends Component {
           <h1 style={{ background: 'red' }}>HTML Previewer</h1>
           <section className="window clear">
             <section className="terminal">
-              <textarea id="input" onKeyUp={this.handleKeyUp.bind(this)}></textarea>
+              <textarea ref="input" onChange={this.handleChange.bind(this)} onKeyUp={this.handleKeyUp.bind(this)} />
             </section>
 
             <section className="terminal">
-              <iframe id="output"></iframe>
+              <iframe ref="output" key={this.state.htmlText}></iframe>
             </section>
           </section>
         </div>
